@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 @EntityScan({"com.shopme.common.entity","com.shopme.admin.user"})
 public class MainController {
-
     @GetMapping("")
     public String viewHomePage(){
         return "index";

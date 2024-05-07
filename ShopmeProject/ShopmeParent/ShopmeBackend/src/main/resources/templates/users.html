@@ -10,15 +10,15 @@
     <script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
 </head>
 <body>
-    <div class="container-fluid">
-        <div>
-            <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
-                <a class="navbar-brand" th:href="@{/}">
-                    <img th:src="@{/images/ShopmeAdminSmall.png}" />
-                </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#topNavbar">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+<div class="container-fluid">
+    <div>
+        <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
+            <a class="navbar-brand" th:href="@{/}">
+                <img th:src="@{/images/ShopmeAdminSmall.png}" />
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#topNavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
             <div class="collapse navbar-collapse">
                 <ul class="navbar-nav">
                     <li class="nav-item">
@@ -59,15 +59,51 @@
 
                 </ul>
             </div>
-            </nav>
-        </div>
-        <div>
-            <h1>Shopme Control Panel</h1>
-        </div>
-        <div>
-            <p>Shopme Control Panel - Copyright &copy; Shopme</p>
-        </div>
+        </nav>
     </div>
+    <div>
+        <h2>Manage Users</h2>
+        <a th:href="@{/users/new}">Create New Users</a>
+    </div>
+    <div th:if="${message != null}" class="alert alert-success text-center">
+        [[${message}]]
+    </div>
+    <div>
+        <table class="table table-bordered table-striped table-hover table-responsive-xl">
+            <thead class="thead-dark" >
+                <tr>
+                    <th>User ID</th>
+                    <th>Photos</th>
+                    <th>Email</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Roles</th>
+                    <th>Enables</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each=" item : ${listUsers}">
+                    <td>[[${item.id}]]</td>
+                    <td></td>
+                    <td>[[${item.email}]]</td>
+                    <td>[[${item.firstName}]]</td>
+                    <td>[[${item.lastName}]]</td>
+                    <td>[[${item.roles}]]</td>
+                    <td>[[${item.enabled}]]</td>
+                    <td>
+                        Edit &nbsp; Delete
+                    </td>
+                </tr>
+            </tbody>
+
+        </table>
+
+    </div>
+
+    <div class="text-center">
+        <p>Shopme Control Panel - Copyright &copy; Shopme</p>
+    </div>
+</div>
 
 </body>
 </html>
