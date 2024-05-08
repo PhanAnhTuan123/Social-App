@@ -3,9 +3,11 @@ package com.shopme.admin.user;
 import com.shopme.common.entity.Role;
 import com.shopme.common.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @Service
 public class UserService {
@@ -13,6 +15,8 @@ public class UserService {
     private UserRepository repository;
     @Autowired
     private RoleRepository roleRepository;
+    @Autowired
+    private PasswordEncoder passwordEncoder;
     public List<User>listAll(){
         return repository.findAll();
     }
@@ -20,7 +24,58 @@ public class UserService {
             return roleRepository.findAll();
     }
 
-    public void save(User user) {
+    public User save(User user) {
+        boolean isUpdatingUser = (user.getId() !=null);
+        if(isUpdatingUser){
+            User existingUser = repository.findById(user.getId()).get();
+            if(user.getPassword().isEmpty()){
+                user.setPassword(existingUser.getPassword());
+            }else{
+                encodePassword(user);
+            }
+        }else{
+            encodePassword(user);
+        }
+        encodePassword(user);
         repository.save(user);
+        return user;
+    }
+
+    private void encodePassword(User user){
+        String encodedPassword = passwordEncoder.encode(user.getPassword());
+        user.setPassword(encodedPassword);
+    }
+    public boolean isEmailUnique(Integer id,String email){
+        User userByEmail = repository.getUserByEmail(email);
+        if(userByEmail == null) return true;
+        boolean isCreatingNew = (id == null);
+        if(isCreatingNew){
+            if(userByEmail != null) return false;
+        }else{
+            if(userByEmail.getId() !=id){
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    public User get(Integer id) {
+        try{
+            return repository.findById(id).get();
+        }catch (NoSuchElementException ex){
+            throw new UserNotFoundException("Could not found any user with ID: "+id);
+        }
+    }
+    public void delete(Integer id){
+        Long countById = repository.countById(id);
+        if(countById == null || countById ==0){
+            throw new UserNotFoundException("Could not find any user with ID " +id);
+        }
+
+        repository.deleteById(id);
+    }
+    public void updateUserEnaibledStatus(Integer id,boolean enabled){
+        repository.updateEnabledStatus(id,enabled);
     }
 }
