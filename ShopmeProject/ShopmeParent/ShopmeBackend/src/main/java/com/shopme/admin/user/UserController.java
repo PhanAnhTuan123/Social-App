@@ -61,7 +61,9 @@ public class UserController {
 
 //        service.save(user);
         redirectAttributes.addFlashAttribute("message","The user has been saved successfully.");
-        return "redirect:/users";
+//        String firstPartOfEmail = user.getEmail().split("@")[0];
+//        return "redirect:/users/page/1?sortField=id&sortDir=asc&keyword="+firstPartOfEmail;
+            return getRedirectURLtoAffectedUser(user);
     }
     @GetMapping("/users/edit/{id}")
     public String editUser(@PathVariable("id") Integer id,
@@ -133,10 +135,11 @@ public class UserController {
         model.addAttribute("sortDir",sortDir);
         model.addAttribute("reverseSortDir",reverseSortDir);
         model.addAttribute("keyword",keyword);
-
-
         return "users";
     }
-
+    private String getRedirectURLtoAffectedUser(User user){
+        String firstPartOfEmail = user.getEmail().split("@")[0];
+        return "redirect:/users/page/1?sortField=id&sortDir=asc&keyword="+firstPartOfEmail;
+    }
 }
 
