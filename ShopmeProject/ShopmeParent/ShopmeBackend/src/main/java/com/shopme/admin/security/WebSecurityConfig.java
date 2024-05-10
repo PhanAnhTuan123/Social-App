@@ -1,9 +1,8 @@
 package com.shopme.admin.security;
 
-import jakarta.servlet.FilterChain;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -18,9 +17,16 @@ public class WebSecurityConfig {
         return new BCryptPasswordEncoder();
     }
 
-    @Bean
-    public SecurityFilterChain configureLogin(HttpSecurity http) throws  Exception{
-        http.authorizeHttpRequests(request ->request.anyRequest().permitAll());
-        return http.build();
-    }
+//    @Bean
+//    public SecurityFilterChain configureLogin(HttpSecurity http) throws  Exception{
+//        http.authorizeHttpRequests(request ->request
+//                .anyRequest()
+//                .authenticated()
+//                .and().formLogin().loginPage("/login").permitAll());
+//        return http.build();
+//    }
+//    @Bean
+//    public SecurityFilterChain configure(WebSecurity webSecurity) throws Exception{
+//
+//    }
 }
