@@ -3,6 +3,7 @@ package com.shopme.admin.user;
 import com.shopme.admin.FileUploadUtil;
 import com.shopme.common.entity.Role;
 import com.shopme.common.entity.User;
+import jakarta.servlet.http.HttpServletResponse;
 import org.apache.catalina.util.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.io.IOException;
 import java.util.List;
 
 @Controller
@@ -140,6 +142,13 @@ public class UserController {
     private String getRedirectURLtoAffectedUser(User user){
         String firstPartOfEmail = user.getEmail().split("@")[0];
         return "redirect:/users/page/1?sortField=id&sortDir=asc&keyword="+firstPartOfEmail;
+    }
+    @GetMapping("/users/export/csv")
+    public  void exportToCSV(HttpServletResponse response) throws IOException {
+        List<User>listUser = service.listAll();
+        UserCsvExporter exporter = new UserCsvExporter();
+        exporter.export(listUser,response);
+
     }
 }
 
