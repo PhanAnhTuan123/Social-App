@@ -29,7 +29,7 @@ Follow these steps to set up and run the ChatApp on your local machine.
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/yourusername/social-media-web-app.git
+git clone https://github.com/PhanAnhTuan123/Social-App.git
 cd social-media-web-app/SocialMediaBE
 ```
 
