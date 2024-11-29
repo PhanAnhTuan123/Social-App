@@ -14,8 +14,6 @@ Before setting up and running the application, ensure you have the following ins
 - RabbitMQ server for message brokering.
 
 ## Features
-
-- **Real-time Messaging:** Interactive communication with WebSocket for instant messaging between users.
 - **Microservices Architecture:** Built to scale with separate services managing distinct features.
 - **Message Brokering with RabbitMQ:** Ensures reliable communication between services.
 - **Data Caching with Redis:** Boosts performance and reduces load on the database.
