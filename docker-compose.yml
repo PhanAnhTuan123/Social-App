@@ -182,7 +182,7 @@ services:
                     memory: 256M
 
     service-registry:
-        image: laminhtam/social-media-service-registry:latest
+        image: phanAnhTuan/social-media-service-registry:latest
         container_name: service-registry-con
         ports:
             - "8761:8761"
@@ -209,7 +209,7 @@ services:
             start_period: 40s
 
     config-server:
-        image: laminhtam/social-media-config-server:latest
+        image: phanAnhTuan/social-media-config-server:latest
         container_name: config-server-con
         ports:
             - "8889:8889"
@@ -227,7 +227,7 @@ services:
                     memory: 128M
 
     gateway:
-        image: laminhtam/social-media-api-gateway:latest
+        image: phanAnhTuan/social-media-api-gateway:latest
         container_name: gateway-con
         restart: always
         ports:
@@ -256,7 +256,7 @@ services:
                     memory: 256M
 
     auth-service:
-        image: laminhtam/social-media-auth-service:latest
+        image: phanAnhTuan/social-media-auth-service:latest
         container_name: auth-service-con
         restart: always
         ports:
@@ -292,7 +292,7 @@ services:
                     memory: 256M
 
     user-service:
-        image: laminhtam/social-media-user-service:latest
+        image: phanAnhTuan/social-media-user-service:latest
         container_name: user-service-con
         restart: always
         ports:
@@ -311,7 +311,7 @@ services:
             - db-neo4j-net
 
     chat-service:
-        image: laminhtam/social-media-chat-service:latest
+        image: phanAnhTuan/social-media-chat-service:latest
         container_name: chat-service-con
         restart: always
         ports:
@@ -338,7 +338,7 @@ services:
             - db-redis-net
 
     post-service:
-        image: laminhtam/social-media-post-service:latest
+        image: phanAnhTuan/social-media-post-service:latest
         container_name: post-service-con
         restart: always
         ports:
@@ -363,7 +363,7 @@ services:
             - db-neo4j-net
 
     notification-service:
-        image: laminhtam/social-media-notification-service:latest
+        image: phanAnhTuan/social-media-notification-service:latest
         container_name: notification-service-con
         restart: always
         ports:
