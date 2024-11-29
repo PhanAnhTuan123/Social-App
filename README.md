@@ -1,7 +1,7 @@
 
 ## Introduction
 
-ChatApp is a real-time social media web application built with a microservices architecture to enable interactive communication at scale. Utilizing WebSocket for real-time messaging, RabbitMQ for message brokering, and Redis for data caching, the app ensures responsive and efficient communication between users. It is developed using Java, Spring Boot, and various modern technologies to provide a robust and scalable solution.
+Social App is a real-time social media web application built with a microservices architecture to enable interactive communication at scale. Utilizing WebSocket for real-time messaging, RabbitMQ for message brokering, and Redis for data caching, the app ensures responsive and efficient communication between users. It is developed using Java, Spring Boot, and various modern technologies to provide a robust and scalable solution.
 
 ## Prerequisites
 
